@@ -19,9 +19,9 @@ func logger() *zap.Logger {
 	syncer := zapcore.NewMultiWriteSyncer(zapcore.AddSync(os.Stdout))
 
 	//
-	fileZore := zapcore.NewCore(encoder, syncer, zapcore.DebugLevel)
+	fileCore := zapcore.NewCore(encoder, syncer, zapcore.DebugLevel)
 
-	return zap.New(fileZore, zap.AddCaller())
+	return zap.New(fileCore, zap.AddCaller())
 }
 
 func data(values ...interface{}) []zap.Field {
