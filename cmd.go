@@ -20,7 +20,7 @@ func main() {
 
 Loop:
 	for {
-		fmt.Printf("请输入数字 (回车确认): ")
+		fmt.Printf("%v%v: ", green("请输入数字"), blue(" (回车确认)"))
 		if _, err := fmt.Scan(&input); err != nil {
 			fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的数字!\n\n"))
 			continue
@@ -33,7 +33,7 @@ Loop:
 		os.Exit(0)
 	case 1:
 		opts = opts.ConfirmModify()
-		opts.InstallDefaultCaddy().ReplaceCaddyWithModules()
+		opts.CaddyInstallation()
 
 	default:
 		fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的数字!\n\n"))

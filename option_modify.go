@@ -6,7 +6,11 @@ func (c *Config) ConfirmModify() *Config {
 Loop:
 	var input string
 
-	fmt.Printf("%v %v", green("是否修改默认配置 (端口号)"), blue("(y|n): "))
+	fmt.Printf("%v%v%v%v",
+		green("是否修改默认配置"),
+		blue(" (端口号)"),
+		yellow(" [不建议修改] "),
+		red("(y|n): "))
 	if _, err := fmt.Scan(&input); err != nil {
 		fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的选项!\n\n"))
 		goto Loop

@@ -8,6 +8,60 @@ import (
 	"strings"
 )
 
+func (c *Config) CaddyInstallation() *Config {
+	if c.CaddyVer != "" {
+		fmt.Printf("%v %v %v",
+			red("[Warning]"),
+			yellow("Caddy 已存在, 是否重新安装?"),
+			blue("(y|n)"),
+		)
+
+		for {
+			var confirm string
+			if _, err := fmt.Scan(&confirm); err != nil {
+				c.logger.Error(err.Error())
+			}
+			if confirm == "y" {
+				c.InstallDefaultCaddy()
+				break
+			} else if confirm == "n" {
+				break
+			} else {
+				fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的选项!\n\n"))
+			}
+		}
+
+	}
+
+	if c.CaddyProxyProtocolSupport {
+		fmt.Printf("%v %v %v",
+			red("[Warning]"),
+			yellow("Caddy 已支持 Proxy Protocol, 是否重新安装?"),
+			blue("(y|n)"),
+		)
+
+		for {
+			var confirm string
+			if _, err := fmt.Scan(&confirm); err != nil {
+				c.logger.Error(err.Error())
+			}
+			if confirm == "y" {
+				c.ReplaceCaddyWithModules()
+				break
+			} else if confirm == "n" {
+				break
+			} else {
+				fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的选项!\n\n"))
+			}
+		}
+		return c
+	}
+
+	fmt.Printf("%v%v\n", green("[预备] "), blue("执行全新安装."))
+	c.InstallDefaultCaddy().ReplaceCaddyWithModules()
+	return c
+}
+
 func (c *Config) InstallDefaultCaddy() *Config {
 	switch c.Platform {
 	case "debian":
