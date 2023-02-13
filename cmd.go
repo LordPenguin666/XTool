@@ -8,7 +8,7 @@ import (
 
 func main() {
 	opts := DefaultOptions()
-	fmt.Println(opts.Arch)
+
 	clear := exec.Command("clear")
 	if err := clear.Run(); err != nil {
 		opts.logger.Error(err.Error())
