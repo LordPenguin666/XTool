@@ -11,7 +11,7 @@ func (c *Config) HostInfo() *Config {
 		c.logger.Fatal(err.Error())
 	}
 
-	fmt.Println(h.Platform, h.PlatformFamily, h.PlatformVersion)
+	fmt.Println(h.KernelArch, h.Platform, h.PlatformFamily, h.PlatformVersion)
 
 	c.Arch = h.KernelArch
 	c.Platform = h.PlatformFamily
