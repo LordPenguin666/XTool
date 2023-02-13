@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"github.com/shirou/gopsutil/v3/host"
 )
 
@@ -11,10 +10,8 @@ func (c *Config) HostInfo() *Config {
 		c.logger.Fatal(err.Error())
 	}
 
-	fmt.Println(h.Platform, h.PlatformFamily, h.PlatformVersion)
-
 	c.Arch = h.KernelArch
-	c.Platform = h.Platform
+	c.Platform = h.PlatformFamily
 
 	return c
 }
