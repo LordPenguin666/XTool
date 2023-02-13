@@ -11,3 +11,7 @@ func (c *Config) EnableCaddy() *Config {
 func (c *Config) StopCaddy() *Config {
 	return c
 }
+
+func (c *Config) UninstallCaddy() *Config {
+	return c
+}
