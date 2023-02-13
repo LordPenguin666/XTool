@@ -22,7 +22,7 @@ func (c *Config) CaddyInstallation() *Config {
 				c.logger.Error(err.Error())
 			}
 			if confirm == "y" {
-				c.InstallDefaultCaddy()
+				c.StopCaddy().InstallDefaultCaddy()
 				break
 			} else if confirm == "n" {
 				break
@@ -46,7 +46,7 @@ func (c *Config) CaddyInstallation() *Config {
 				c.logger.Error(err.Error())
 			}
 			if confirm == "y" {
-				c.ReplaceCaddyWithModules()
+				c.StopCaddy().ReplaceCaddyWithModules()
 				break
 			} else if confirm == "n" {
 				break
@@ -57,12 +57,14 @@ func (c *Config) CaddyInstallation() *Config {
 		return c
 	}
 
-	fmt.Printf("%v%v\n", green("[预备] "), blue("执行全新安装."))
-	c.InstallDefaultCaddy().ReplaceCaddyWithModules()
+	fmt.Printf("%v%v\n", green("预备 "), blue("执行全新安装."))
+	c.InstallDefaultCaddy().StartCaddy().ReplaceCaddyWithModules()
 	return c
 }
 
 func (c *Config) InstallDefaultCaddy() *Config {
+	fmt.Printf("%v %v", green("系统发行版"), blue(c.Platform))
+
 	switch c.Platform {
 	case "debian":
 		c.DebianCaddyInstall()
@@ -114,9 +116,12 @@ func (c *Config) DebianCaddyInstall() *Config {
 
 	for _, command := range commands {
 		bash := exec.Command("bash", "-c", command)
-		if _, err := bash.CombinedOutput(); err != nil {
+		if output, err := bash.CombinedOutput(); err != nil {
 			c.logger.Error(err.Error())
+		} else {
+			fmt.Println(string(output))
 		}
+
 	}
 
 	return c
