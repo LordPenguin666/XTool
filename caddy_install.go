@@ -58,7 +58,7 @@ func (c *Config) CaddyInstallation() *Config {
 	}
 
 	fmt.Printf("%v%v\n", green("预备 "), blue("执行全新安装."))
-	c.InstallDefaultCaddy().StartCaddy().ReplaceCaddyWithModules()
+	c.InstallDefaultCaddy().StopCaddy().ReplaceCaddyWithModules()
 	return c
 }
 
