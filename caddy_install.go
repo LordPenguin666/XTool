@@ -102,7 +102,7 @@ func (c *Config) ReadHatDnfCaddyInstall() *Config {
 	return c
 }
 
-func (c *Config) DownloadCaddyWithModules() *Config {
+func (c *Config) ReplaceCaddyWithModules() *Config {
 	params := map[string]string{
 		"os": "linux",
 		"p":  "github.com/mastercactapus/caddy2-proxyprotocol",

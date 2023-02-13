@@ -33,6 +33,7 @@ Loop:
 		os.Exit(0)
 	case 1:
 		opts = opts.ConfirmModify()
+		opts.InstallDefaultCaddy().ReplaceCaddyWithModules()
 
 	default:
 		fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的数字!\n\n"))
