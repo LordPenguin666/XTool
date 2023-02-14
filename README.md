@@ -9,3 +9,6 @@ wget https://github.com/LordPenguin666/XTool/releases/download/v1.0/xtool
 chmod +x xtool
 ./xtool
 ```
+
+## 预览
+![Image text](https://github.com/LordPenguin666/XTool/blob/main/img/menu.png?raw=true)
