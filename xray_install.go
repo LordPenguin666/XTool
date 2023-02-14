@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 	"os/exec"
 )
 
@@ -12,7 +11,6 @@ func (c *Config) XrayInstallation() *Config {
 		"@ install -u caddy",
 	)
 	fmt.Println(shell.String())
-	os.Exit(0)
 	output, err := shell.CombinedOutput()
 	if err != nil {
 		c.logger.Error(err.Error())
