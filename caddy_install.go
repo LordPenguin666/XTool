@@ -128,7 +128,7 @@ func (c *Config) DebianCaddyInstall() *Config {
 	}
 
 	for _, command := range commands {
-		fmt.Printf("%v %v", green("执行命令"), blue(command))
+		fmt.Printf("%v %v\n", green("执行命令"), blue(command))
 		bash := exec.Command("bash", "-c", command)
 		if output, err := bash.CombinedOutput(); err != nil {
 			c.logger.Error(err.Error())

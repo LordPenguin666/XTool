@@ -59,7 +59,7 @@ func (c *Config) DomainLookup() *Config {
 			yellow("请注意, 必须将域名解析到本机上, 才能成功申请到证书!"),
 		)
 	} else {
-		fmt.Printf("域名解析正确 %v -> %v\n", blue(c.Domain), blue(c.IP))
+		fmt.Printf("%v %v -> %v\n", green("域名解析正确"), blue(c.Domain), blue(c.IP))
 	}
 
 	return c
