@@ -22,7 +22,7 @@ func (c *Config) menu() {
 		c.logger.Error(err.Error())
 	}
 
-	color.Blue("*              http://10.0.1.9/lordpenguin/xray-tool               *")
+	color.Blue("*             https://github.com/LordPenguin666/XTool              *")
 
 	if _, err := color.New(color.FgBlue).Print("*"); err != nil {
 		c.logger.Error(err.Error())
@@ -103,16 +103,20 @@ func (c *Config) menu() {
 	fmt.Printf("  %v %v\n", green("13) "), blue("启动 Caddy (在写了在写了)"))
 	fmt.Printf("  %v %v\n", green("14) "), blue("重启 Caddy (在写了在写了)"))
 	fmt.Printf("  %v %v\n", green("15) "), blue("关闭 Caddy (在写了在写了)"))
-	fmt.Printf("  %v %v\n", green("16) "), blue("卸载 Caddy (在写了在写了)"))
-	fmt.Printf("  %v %v\n", green("17) "), blue("安装 Caddy (在写了在写了)"))
+	fmt.Printf("  %v %v\n", green("16) "), blue("自启动 Caddy (在写了在写了)"))
+	fmt.Printf("  %v %v\n", green("17) "), blue("关闭自启动 Caddy (在写了在写了)"))
+	fmt.Printf("  %v %v\n", green("18) "), blue("卸载 Caddy (在写了在写了)"))
+	fmt.Printf("  %v %v\n", green("19) "), blue("安装 Caddy (在写了在写了)"))
 	fmt.Println()
 	fmt.Printf("  %v %v\n", green("21) "), blue("修改 Xray Xtls 端口 (在写了在写了)"))
 	fmt.Printf("  %v %v\n", green("22) "), blue("修改 Xray naiveproxy 端口 (在写了在写了)"))
 	fmt.Printf("  %v %v\n", green("23) "), blue("启动 Xray (在写了在写了)"))
 	fmt.Printf("  %v %v\n", green("24) "), blue("重启 Xray (在写了在写了)"))
 	fmt.Printf("  %v %v\n", green("25) "), blue("关闭 Xray (在写了在写了)"))
-	fmt.Printf("  %v %v\n", green("26) "), blue("卸载 Xray (在写了在写了)"))
-	fmt.Printf("  %v %v\n", green("27) "), blue("安装 Xray (在写了在写了)"))
+	fmt.Printf("  %v %v\n", green("26) "), blue("自启动 Xray (在写了在写了)"))
+	fmt.Printf("  %v %v\n", green("27) "), blue("关闭自启动 Xray (在写了在写了)"))
+	fmt.Printf("  %v %v\n", green("28) "), blue("卸载 Xray (在写了在写了)"))
+	fmt.Printf("  %v %v\n", green("29) "), blue("安装 Xray (在写了在写了)"))
 	fmt.Println()
 	fmt.Printf("  %v %v\n", green("0) "), blue("退出此脚本"))
 	fmt.Println()

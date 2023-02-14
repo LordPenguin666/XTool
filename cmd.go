@@ -9,11 +9,7 @@ import (
 func main() {
 	opts := DefaultOptions()
 
-	clear := exec.Command("clear")
-	if err := clear.Run(); err != nil {
-		opts.logger.Error(err.Error())
-	}
-
+	opts.Clear()
 	opts.menu()
 
 	var input int
@@ -39,4 +35,20 @@ Loop:
 		fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的数字!\n\n"))
 		goto Loop
 	}
+}
+
+func (c *Config) Clear() {
+	clear := exec.Command("clear")
+	clear.Stdout = os.Stdout
+	if err := clear.Run(); err != nil {
+		c.logger.Error(err.Error())
+	}
+}
+
+func (c *Config) FileExist(fileName string) bool {
+	if _, err := os.Stat(fileName); os.IsNotExist(err) {
+		return false
+	}
+
+	return true
 }

@@ -5,7 +5,6 @@ import (
 	"github.com/go-resty/resty/v2"
 	"os"
 	"os/exec"
-	"strings"
 )
 
 func (c *Config) CaddyInstallation() *Config {
@@ -57,44 +56,29 @@ func (c *Config) CaddyInstallation() *Config {
 		return c
 	}
 
-	fmt.Printf("%v%v\n", green("预备 "), blue("执行全新安装."))
+	fmt.Printf("%v%v\n", green("预备 "), blue("执行全新安装"))
+
+	// 安装 Caddy
 	c.InstallDefaultCaddy().StopCaddy().ReplaceCaddyWithModules()
+
+	// 配置 Caddy
+	c.DeployCaddyFile().DeployCaddyConf().RestartCaddy().EnableCaddy()
+
 	return c
 }
 
 func (c *Config) InstallDefaultCaddy() *Config {
-	fmt.Printf("%v %v", green("系统发行版"), blue(c.Platform))
+	fmt.Printf("%v %v\n", green("系统发行版"), blue(c.Platform))
 
 	switch c.Platform {
 	case "debian":
 		c.DebianCaddyInstall()
 	case "rhel":
-		whereIsYum := exec.Command("whereis", "yum")
-		whereIsDnf := exec.Command("whereis", "dnf")
-
-		output, err := whereIsYum.CombinedOutput()
-		if err != nil {
-			c.logger.Error(err.Error())
-		}
-
-		words := strings.Split(string(output), " ")
-		if len(words) <= 1 {
-			output, err = whereIsDnf.CombinedOutput()
-			if err != nil {
-				c.logger.Error(err.Error())
-			}
-
-			words = strings.Split(string(output), " ")
-
-			if len(words) <= 1 {
-				fmt.Printf("%v", red("?????????????????????????"))
-				os.Exit(0)
-			}
-
-			c.ReadHatDnfCaddyInstall()
-
-		} else {
+		switch c.PackageManagement {
+		case "yum":
 			c.ReadHatYumCaddyInstall()
+		case "dnf":
+			c.ReadHatDnfCaddyInstall()
 		}
 
 	default:

@@ -12,6 +12,7 @@ type Config struct {
 
 	Domain      string
 	ProxyDomain string
+	isHttps     bool
 
 	logger *zap.Logger
 
@@ -23,6 +24,8 @@ type Config struct {
 
 	CaddyVer                  string
 	CaddyProxyProtocolSupport bool
+
+	PackageManagement string
 }
 
 type Option func(c *Config)
@@ -39,7 +42,8 @@ func DefaultOptions() *Config {
 		logger:         logger(),
 	}
 
-	c = c.HostInfo().CaddyVersion().CaddyPlugins("caddy.listeners.proxy_protocol").
+	c = c.HostInfo().SwitchPackage().CaddyVersion().
+		CaddyPlugins("caddy.listeners.proxy_protocol").
 		XrayVersion().IPAddress()
 
 	return c
