@@ -106,6 +106,8 @@ func (c *Config) InstallDefaultCaddy(skip bool) *Config {
 		return c
 	}
 
+	fmt.Printf("%v\n", green("正在安装 Caddy"))
+
 	switch c.Platform {
 	case "debian":
 		c.DebianCaddyInstall()
@@ -186,6 +188,8 @@ func (c *Config) ReplaceCaddyWithModules(skip bool) *Config {
 	if skip {
 		return c
 	}
+
+	fmt.Printf("%v\n", green("正在替换原版 Caddy"))
 
 	params := map[string]string{
 		"os": "linux",
