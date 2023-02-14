@@ -52,12 +52,19 @@ Loop:
 	case 21:
 	case 22:
 	case 23:
+		opts.StartXray()
 	case 24:
+		opts.RestartXray()
 	case 25:
+		opts.StopXray()
 	case 26:
+		opts.EnableXray()
 	case 27:
+		opts.DisableXray()
 	case 28:
+		opts.XrayUninstallation()
 	case 29:
+		opts.XrayInstallation()
 
 	default:
 		fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的数字!\n\n"))
