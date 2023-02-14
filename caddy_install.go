@@ -51,15 +51,14 @@ func (c *Config) CaddyInstallation(conf bool) *Config {
 			}
 			if confirm == "y" {
 				c.StopCaddy()
-				skipReplaceCaddy = true
 				break
 			} else if confirm == "n" {
+				skipReplaceCaddy = true
 				break
 			} else {
 				fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的选项!\n\n"))
 			}
 		}
-		return c
 	}
 
 	fmt.Printf("%v %v\n", green("系统发行版"), blue(c.Platform))
