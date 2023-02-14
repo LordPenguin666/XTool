@@ -21,7 +21,7 @@ func (c *Config) CaddyInstallation() *Config {
 				c.logger.Error(err.Error())
 			}
 			if confirm == "y" {
-				c.StopCaddy().InstallDefaultCaddy()
+				c.StopCaddy().InstallDefaultCaddy().RestartCaddy()
 				break
 			} else if confirm == "n" {
 				break
@@ -45,7 +45,7 @@ func (c *Config) CaddyInstallation() *Config {
 				c.logger.Error(err.Error())
 			}
 			if confirm == "y" {
-				c.StopCaddy().ReplaceCaddyWithModules()
+				c.StopCaddy().ReplaceCaddyWithModules().RestartCaddy()
 				break
 			} else if confirm == "n" {
 				break

@@ -22,8 +22,6 @@ Loop:
 	switch input {
 	case "y":
 		c.ModifyConfig()
-	case "n":
-		return c
 	default:
 		fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的选项!\n\n"))
 		goto Loop
