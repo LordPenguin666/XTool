@@ -9,7 +9,7 @@ import (
 	"time"
 )
 
-func (c *Config) CaddyInstallation() *Config {
+func (c *Config) CaddyInstallation(conf bool) *Config {
 	if c.CaddyVer != "" {
 		fmt.Printf("%v %v %v",
 			red("[Warning]"),
@@ -58,10 +58,15 @@ func (c *Config) CaddyInstallation() *Config {
 		return c
 	}
 
+	fmt.Printf("%v %v\n", green("系统发行版"), blue(c.Platform))
 	fmt.Printf("%v%v\n", green("预备 "), blue("执行全新安装"))
 
 	// 安装 Caddy
 	c.InstallDefaultCaddy().StopCaddy().ReplaceCaddyWithModules()
+
+	if !conf {
+		return c
+	}
 
 	// 配置 Caddy
 	c.DeployCaddyFile().DeployCaddyConf().RestartCaddy().EnableCaddy()
@@ -94,8 +99,6 @@ func (c *Config) CaddyInstallation() *Config {
 }
 
 func (c *Config) InstallDefaultCaddy() *Config {
-	fmt.Printf("%v %v\n", green("系统发行版"), blue(c.Platform))
-
 	switch c.Platform {
 	case "debian":
 		c.DebianCaddyInstall()
@@ -125,6 +128,7 @@ func (c *Config) DebianCaddyInstall() *Config {
 	}
 
 	for _, command := range commands {
+		fmt.Printf("%v %v", green("执行命令"), blue(command))
 		bash := exec.Command("bash", "-c", command)
 		if output, err := bash.CombinedOutput(); err != nil {
 			c.logger.Error(err.Error())

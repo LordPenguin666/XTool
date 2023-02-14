@@ -29,7 +29,7 @@ Loop:
 		os.Exit(0)
 	case 1:
 		opts = opts.ConfirmModify()
-		opts.CaddyInstallation()
+		opts.CaddyInstallation(true)
 	case 2:
 
 	case 11:
@@ -47,7 +47,7 @@ Loop:
 	case 18:
 		opts.UninstallCaddy()
 	case 19:
-		opts.CaddyInstallation()
+		opts.CaddyInstallation(false)
 
 	case 21:
 	case 22:
