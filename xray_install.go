@@ -66,5 +66,9 @@ func (c *Config) XrayUninstallation() *Config {
 
 	fmt.Println(string(output))
 
+	if err = os.Remove("install-release.sh"); err != nil {
+		c.logger.Error(err.Error())
+	}
+
 	return c
 }
