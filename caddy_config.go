@@ -65,6 +65,11 @@ func (c *Config) DeployCaddyFile() *Config {
 }
 
 func (c *Config) DeployCaddyConf() *Config {
+	createDir := exec.Command("mkdir", "-p", "/etc/caddy/conf.d/")
+	if err := createDir.Run(); err != nil {
+		c.logger.Error(err.Error())
+	}
+
 	confPath := "/etc/caddy/conf.d/" + c.Domain
 	if c.FileExist(confPath) {
 		command := exec.Command("cat", confPath)
