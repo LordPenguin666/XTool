@@ -29,7 +29,8 @@ Loop:
 		os.Exit(0)
 	case 1:
 		opts = opts.ConfirmModify()
-		opts.CaddyInstallation(true)
+		opts.CaddyInstallation(true).XrayInstallation().LoadXrayConfig().XrayLinkGeneration().
+			XrayLinkQRCode().XrayLinkPrint()
 	case 2:
 
 	case 11:

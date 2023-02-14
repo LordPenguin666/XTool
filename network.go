@@ -9,7 +9,7 @@ import (
 
 func (c *Config) IPAddress() *Config {
 	client := resty.New()
-	client.SetTimeout(15 * time.Second)
+	client.SetTimeout(time.Minute)
 	client.SetHeader("user-agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36")
 	client.SetHeader("referer", "https://www.bilibili.com/")
 

@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"go.uber.org/zap"
 )
 
@@ -20,7 +19,10 @@ type Config struct {
 	Platform string
 	IP       string
 
-	XrayVer string
+	XrayVer    string
+	XrayLink   string
+	XrayUUID   string
+	XrayConfig *XrayConfig
 
 	CaddyVer                  string
 	CaddySSLCert              string
@@ -30,11 +32,11 @@ type Config struct {
 	PackageManagement string
 }
 
-type Option func(c *Config)
+//type Option func(c *Config)
 
-func (opt Option) Apply(c *Config) {
-	opt(c)
-}
+//func (opt Option) Apply(c *Config) {
+//	opt(c)
+//}
 
 func DefaultOptions() *Config {
 	c := &Config{
@@ -51,46 +53,44 @@ func DefaultOptions() *Config {
 	return c
 }
 
-func Ready(defaultOptions *Config, opts ...Option) *Config {
-	c := defaultOptions
-
-	for _, o := range opts {
-		o.Apply(c)
-	}
-
-	c.DomainLookup()
-
-	fmt.Println(c)
-
-	return c
-}
-
-func WithXTLSPort(port int) Option {
-	return func(c *Config) {
-		c.XrayXTLSPort = port
-	}
-}
-
-func WithCaddyHTTPPort(port int) Option {
-	return func(c *Config) {
-		c.CaddyHTTPPort = port
-	}
-}
-
-func WithCaddyHTTPSPort(port int) Option {
-	return func(c *Config) {
-		c.CaddyHTTPSPort = port
-	}
-}
-
-func WithDomain(domain string) Option {
-	return func(c *Config) {
-		c.Domain = domain
-	}
-}
-
-func withProxyDomain(proxyDomain string) Option {
-	return func(c *Config) {
-		c.ProxyDomain = proxyDomain
-	}
-}
+//func Ready(defaultOptions *Config, opts ...Option) *Config {
+//	c := defaultOptions
+//
+//	for _, o := range opts {
+//		o.Apply(c)
+//	}
+//
+//	c.DomainLookup()
+// //
+//	return c
+//}
+//
+//func WithXTLSPort(port int) Option {
+//	return func(c *Config) {
+//		c.XrayXTLSPort = port
+//	}
+//}
+//
+//func WithCaddyHTTPPort(port int) Option {
+//	return func(c *Config) {
+//		c.CaddyHTTPPort = port
+//	}
+//}
+//
+//func WithCaddyHTTPSPort(port int) Option {
+//	return func(c *Config) {
+//		c.CaddyHTTPSPort = port
+//	}
+//}
+//
+//func WithDomain(domain string) Option {
+//	return func(c *Config) {
+//		c.Domain = domain
+//	}
+//}
+//
+//func withProxyDomain(proxyDomain string) Option {
+//	return func(c *Config) {
+//		c.ProxyDomain = proxyDomain
+//	}
+//}
