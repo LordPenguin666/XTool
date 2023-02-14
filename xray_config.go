@@ -11,7 +11,7 @@ import (
 func (c *Config) LoadXrayConfig() *Config {
 	c.StopXray()
 
-	if err := json.Unmarshal([]byte(XrayExampleConfig), c.XrayConfig); err != nil {
+	if err := json.Unmarshal([]byte(XrayExampleConfig), &c.XrayConfig); err != nil {
 		c.logger.Error(err.Error())
 	}
 
