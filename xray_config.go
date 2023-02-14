@@ -21,7 +21,7 @@ func (c *Config) LoadXrayConfig() *Config {
 	c.XrayConfig.Inbounds[0].StreamSettings.TlsSettings.Certificates[0].CertificateFile = c.CaddySSLCert
 	c.XrayConfig.Inbounds[0].StreamSettings.TlsSettings.Certificates[0].KeyFile = c.CaddySSLKey
 
-	b, err := json.Marshal(c.XrayConfig)
+	b, err := json.MarshalIndent(c.XrayConfig, "", " ")
 	if err != nil {
 		c.logger.Error(err.Error())
 	}

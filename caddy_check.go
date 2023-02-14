@@ -62,11 +62,13 @@ func (c *Config) CaddySSL() *Config {
 
 		if _, err := os.Stat(cert); err == nil {
 			c.CaddySSLCert = cert
+			fmt.Println(c.CaddySSLCert)
 			certExist = true
 		}
 
 		if _, err := os.Stat(key); err == nil {
-			c.CaddySSLCert = key
+			c.CaddySSLKey = key
+			fmt.Println(c.CaddySSLKey)
 			keyExist = true
 		}
 	}
