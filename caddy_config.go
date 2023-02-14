@@ -34,12 +34,12 @@ func (c *Config) DeployCaddyFile() *Config {
 	}
 
 	if c.FileExist("/etc/caddy/Caddyfile") && strings.Contains(string(catCaddyFile), "proxy_protocol") {
-		fmt.Printf("%v\n", green("当前的 Caddy 配置:"))
+		fmt.Printf("%v\n", magenta("当前的 Caddy 配置:"))
 		fmt.Printf("%v\n", string(catCaddyFile))
 		fmt.Printf("%v %v %v",
 			red("[Warning]"),
 			yellow("Caddyfile 可能已经配置完毕, 是否覆盖?"),
-			blue("(y|n)"),
+			blue("(y|n): "),
 		)
 
 		for {
@@ -78,12 +78,12 @@ func (c *Config) DeployCaddyConf() *Config {
 			c.logger.Error(err.Error())
 		}
 
-		fmt.Printf("%v\n", green("当前的 Caddy Conf 配置:"))
+		fmt.Printf("%v\n", magenta("当前的 Caddy Conf 配置:"))
 		fmt.Printf("%v\n", string(catCaddyConf))
 		fmt.Printf("%v %v %v",
 			red("[Warning]"),
 			yellow("Caddy Conf 可能已经配置完毕, 是否覆盖?"),
-			blue("(y|n)"),
+			blue("(y|n): "),
 		)
 
 		for {

@@ -3,8 +3,10 @@ package main
 import (
 	"fmt"
 	"github.com/go-resty/resty/v2"
+	"github.com/shopspring/decimal"
 	"os"
 	"os/exec"
+	"time"
 )
 
 func (c *Config) CaddyInstallation() *Config {
@@ -12,7 +14,7 @@ func (c *Config) CaddyInstallation() *Config {
 		fmt.Printf("%v %v %v",
 			red("[Warning]"),
 			yellow("Caddy 已存在, 是否重新安装?"),
-			blue("(y|n)"),
+			blue("(y|n): "),
 		)
 
 		for {
@@ -36,7 +38,7 @@ func (c *Config) CaddyInstallation() *Config {
 		fmt.Printf("%v %v %v",
 			red("[Warning]"),
 			yellow("Caddy 已支持 Proxy Protocol, 是否重新安装?"),
-			blue("(y|n)"),
+			blue("(y|n): "),
 		)
 
 		for {
@@ -63,6 +65,30 @@ func (c *Config) CaddyInstallation() *Config {
 
 	// 配置 Caddy
 	c.DeployCaddyFile().DeployCaddyConf().RestartCaddy().EnableCaddy()
+
+	// 等待证书生成
+	fmt.Printf("%v\n", "等待 Caddy 申请证书中...")
+	now := time.Now()
+	timeLeft := 30 * time.Second
+
+	for {
+		task := time.NewTimer(50 * time.Millisecond)
+		if time.Since(now) >= timeLeft {
+			break
+		}
+
+		t := timeLeft - time.Since(now)
+		fmt.Printf("%v %v %v\r",
+			green("剩余时间:"),
+			blue(decimal.NewFromFloat(t.Seconds()).Round(1).String()),
+			green("s"),
+		)
+
+		<-task.C
+	}
+
+	// 检查证书
+	c.CaddySSL()
 
 	return c
 }

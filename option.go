@@ -23,6 +23,8 @@ type Config struct {
 	XrayVer string
 
 	CaddyVer                  string
+	CaddySSLCert              string
+	CaddySSLKey               string
 	CaddyProxyProtocolSupport bool
 
 	PackageManagement string

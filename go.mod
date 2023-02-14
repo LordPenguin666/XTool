@@ -6,6 +6,7 @@ require (
 	github.com/fatih/color v1.14.1
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/shirou/gopsutil/v3 v3.23.1
+	github.com/shopspring/decimal v1.3.1
 	go.uber.org/zap v1.24.0
 )
 
