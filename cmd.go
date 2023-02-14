@@ -30,6 +30,34 @@ Loop:
 	case 1:
 		opts = opts.ConfirmModify()
 		opts.CaddyInstallation()
+	case 2:
+
+	case 11:
+	case 12:
+	case 13:
+		opts.StartCaddy()
+	case 14:
+		opts.RestartCaddy()
+	case 15:
+		opts.StopCaddy()
+	case 16:
+		opts.EnableCaddy()
+	case 17:
+		opts.DisableCaddy()
+	case 18:
+		opts.UninstallCaddy()
+	case 19:
+		opts.CaddyInstallation()
+
+	case 21:
+	case 22:
+	case 23:
+	case 24:
+	case 25:
+	case 26:
+	case 27:
+	case 28:
+	case 29:
 
 	default:
 		fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的数字!\n\n"))

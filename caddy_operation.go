@@ -1,6 +1,8 @@
 package main
 
-import "os/exec"
+import (
+	"os/exec"
+)
 
 func (c *Config) StartCaddy() *Config {
 	bash := exec.Command("systemctl", "start", "caddy")
@@ -39,9 +41,5 @@ func (c *Config) DisableCaddy() *Config {
 	if err := bash.Run(); err != nil {
 		logger().Error(err.Error())
 	}
-	return c
-}
-
-func (c *Config) UninstallCaddy() *Config {
 	return c
 }

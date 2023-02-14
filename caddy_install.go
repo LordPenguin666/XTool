@@ -201,3 +201,30 @@ func (c *Config) ReplaceCaddyWithModules() *Config {
 
 	return c
 }
+
+func (c *Config) UninstallCaddy() *Config {
+	switch c.PackageManagement {
+	case "apt":
+		bash := exec.Command("apt", "autoremove", "caddy", "-y")
+		output, err := bash.CombinedOutput()
+		if err != nil {
+			c.logger.Error(err.Error())
+		}
+		fmt.Println(output)
+	case "yum":
+		bash := exec.Command("yum", "remove", "caddy", "-y")
+		output, err := bash.CombinedOutput()
+		if err != nil {
+			c.logger.Error(err.Error())
+		}
+		fmt.Println(output)
+	case "dnf":
+		bash := exec.Command("dnf", "remove", "caddy", "-y")
+		output, err := bash.CombinedOutput()
+		if err != nil {
+			c.logger.Error(err.Error())
+		}
+		fmt.Println(output)
+	}
+	return c
+}
