@@ -41,10 +41,13 @@ func (c *Config) XrayLinkGeneration() *Config {
 	u.Add("headerType", "none")
 	u.Add("fp", "randomized")
 	u.Add("type", "tcp")
-	u.Add("flow", c.Domain)
+	u.Add("flow", "xtls-rprx-vision")
+	u.Add("sni", c.Domain)
 
-	c.XrayLink = fmt.Sprintf("vless://%v@%v:%v?%v#别名测试",
-		c.XrayUUID, c.Domain, c.XrayXTLSPort, u.Encode())
+	name := fmt.Sprintf("[%v] (%v) xtls-rprx-vision", c.Domain, c.IP)
+
+	c.XrayLink = fmt.Sprintf("vless://%v@%v:%v?%v#%v",
+		c.XrayUUID, c.Domain, c.XrayXTLSPort, u.Encode(), name)
 
 	return c
 }
