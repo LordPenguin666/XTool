@@ -10,6 +10,8 @@ import (
 )
 
 func (c *Config) CaddyInstallation(conf bool) *Config {
+	var skipInstallCaddy, skipReplaceCaddy bool
+
 	if c.CaddyVer != "" {
 		fmt.Printf("%v %v %v",
 			red("[Warning]"),
@@ -23,9 +25,10 @@ func (c *Config) CaddyInstallation(conf bool) *Config {
 				c.logger.Error(err.Error())
 			}
 			if confirm == "y" {
-				c.StopCaddy().InstallDefaultCaddy().RestartCaddy()
+				c.StopCaddy()
 				break
 			} else if confirm == "n" {
+				skipInstallCaddy = true
 				break
 			} else {
 				fmt.Printf("%v %v", red("[Warning]"), yellow("请输入一个正确的选项!\n\n"))
@@ -47,7 +50,8 @@ func (c *Config) CaddyInstallation(conf bool) *Config {
 				c.logger.Error(err.Error())
 			}
 			if confirm == "y" {
-				c.StopCaddy().ReplaceCaddyWithModules().RestartCaddy()
+				c.StopCaddy()
+				skipReplaceCaddy = true
 				break
 			} else if confirm == "n" {
 				break
@@ -59,10 +63,10 @@ func (c *Config) CaddyInstallation(conf bool) *Config {
 	}
 
 	fmt.Printf("%v %v\n", green("系统发行版"), blue(c.Platform))
-	fmt.Printf("%v%v\n", green("预备 "), blue("执行全新安装"))
+	fmt.Printf("%v%v\n", green("预备执行安装"))
 
 	// 安装 Caddy
-	c.InstallDefaultCaddy().StopCaddy().ReplaceCaddyWithModules()
+	c.InstallDefaultCaddy(skipInstallCaddy).StopCaddy().ReplaceCaddyWithModules(skipReplaceCaddy)
 
 	if !conf {
 		return c
@@ -98,7 +102,11 @@ func (c *Config) CaddyInstallation(conf bool) *Config {
 	return c
 }
 
-func (c *Config) InstallDefaultCaddy() *Config {
+func (c *Config) InstallDefaultCaddy(skip bool) *Config {
+	if skip {
+		return c
+	}
+
 	switch c.Platform {
 	case "debian":
 		c.DebianCaddyInstall()
@@ -175,7 +183,11 @@ func (c *Config) ReadHatDnfCaddyInstall() *Config {
 	return c
 }
 
-func (c *Config) ReplaceCaddyWithModules() *Config {
+func (c *Config) ReplaceCaddyWithModules(skip bool) *Config {
+	if skip {
+		return c
+	}
+
 	params := map[string]string{
 		"os": "linux",
 		"p":  "github.com/mastercactapus/caddy2-proxyprotocol",
