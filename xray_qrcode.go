@@ -7,7 +7,7 @@ import (
 
 func (c *Config) XrayLinkQRCode() *Config {
 Loop:
-	fmt.Printf("%v%v%v%v",
+	fmt.Printf("%v%v",
 		green("是否生成 vless 二维码"),
 		blue("(y|n): "))
 
