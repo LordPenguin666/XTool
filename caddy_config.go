@@ -44,7 +44,7 @@ func (c *Config) DeployCaddyFile() *Config {
 
 		for {
 			var confirm string
-			if _, err := fmt.Scan(&confirm); err != nil {
+			if _, err = fmt.Scan(&confirm); err != nil {
 				c.logger.Error(err.Error())
 			}
 			if confirm == "y" {
