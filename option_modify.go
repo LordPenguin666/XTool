@@ -76,7 +76,7 @@ func (c *Config) AddDomain() *Config {
 
 	fmt.Printf("%v %v",
 		green("请输入解析到此服务器的域名, 无需 http 前缀"),
-		blue(" (例如: xxx.example.com)"),
+		blue("(例如: xxx.example.com): "),
 	)
 
 	if _, err := fmt.Scan(&input); err != nil {
@@ -93,7 +93,7 @@ func (c *Config) AddProxyDomain() *Config {
 Loop:
 	fmt.Printf("%v %v",
 		green("请输入要反代的域名, 需要 http 前缀"),
-		blue(" (例如: https://bing.com)"),
+		blue("(例如: https://bing.com): "),
 	)
 
 	if _, err := fmt.Scan(&input); err != nil {
