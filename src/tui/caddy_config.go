@@ -78,7 +78,7 @@ func (ui *UI) getCaddyfileProxyHTTP() string {
 
 func (ui *UI) getCaddyfileProxyHTTPS() string {
 	return fmt.Sprintf("http://%v:%v {\n", ui.localDomain.Hostname(), ui.caddyProxyProtocolPort) +
-		fmt.Sprintf("    reverse_proxy %v {\n", ui.localDomain) +
+		fmt.Sprintf("    reverse_proxy %v {\n", ui.proxyURI) +
 		"        header_up Host {upstream_hostport}\n" +
 		"        transport http {\n" +
 		"            tls\n" +
@@ -87,7 +87,7 @@ func (ui *UI) getCaddyfileProxyHTTPS() string {
 		"}\n" +
 		"\n" +
 		fmt.Sprintf("%v:%v {\n", ui.localDomain.Hostname(), ui.caddyHTTPSPort) +
-		fmt.Sprintf("    reverse_proxy %v {\n", ui.localDomain) +
+		fmt.Sprintf("    reverse_proxy %v {\n", ui.proxyURI) +
 		"        header_up Host {upstream_hostport}\n" +
 		"        transport http {\n" +
 		"            tls\n" +
