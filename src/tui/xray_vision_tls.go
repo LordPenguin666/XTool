@@ -15,13 +15,13 @@ func (ui *UI) tlsForm() *tview.Grid {
 	form := tview.NewForm()
 
 	form.AddInputField("Your Domain", ui.localDomain.Hostname(), 30, nil, nil)
-	form.AddInputField("Proxy URI", "https://www.lovelive-anime.jp/", 50, nil, nil)
+	form.AddInputField("Proxy URI", "https://www.lovelive-anime.jp", 50, nil, nil)
 	form.AddInputField("Xray UUID", ui.xrayUUID, 50, nil, nil)
 	form.AddInputField("Xray Port", "443", 10, nil, nil)
 	form.AddInputField("Caddy Proxy Protocol Port", "8080", 10, nil, nil)
 	form.AddInputField("Caddy HTTPS Port", "8443", 10, nil, nil)
 
-	form.AddTextView("Example", "Your Domain:   us.ouo.eu.org\nProxy URI:     https://www.lovelive-anime.jp/", 50, 2, true, true)
+	form.AddTextView("Example", "Your Domain:   us.ouo.eu.org\nProxy URI:     https://www.lovelive-anime.jp", 50, 2, true, true)
 
 	form.AddButton("Save", func() {
 		var err error

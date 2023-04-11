@@ -5,7 +5,7 @@ import "github.com/rivo/tview"
 func (ui *UI) menu() *tview.Grid {
 	list := tview.NewList()
 
-	list.AddItem("安装 Xray + Vless + xtls-rprx-vision + tls", "使用 caddy-l4 进行 sni 分流", '0', func() {
+	list.AddItem("安装 Xray + Vless + xtls-rprx-vision + tls", "Xray 监听 443 并回落至 Caddy", '0', func() {
 		ui.xrayFunc = ui.xrayVisionTLS
 		ui.nextContent(ui.tlsForm())
 	})
