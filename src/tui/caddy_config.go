@@ -45,8 +45,8 @@ func (ui *UI) getLocalDomain() (*url.URL, bool) {
 }
 
 func (ui *UI) getMainCaddyFile() string {
-	return "{\n" + "auto_https disable_redirects\n" +
-		fmt.Sprintf(
+	return "{\n" +
+		fmt.Sprintf("        auto_https disable_redirects\n"+
 			"        servers :%v {\n", ui.caddyProxyProtocolPort) +
 		"                listener_wrappers {\n" +
 		"                        proxy_protocol {\n" +
