@@ -6,10 +6,6 @@
 
 - 由于官方安装脚本尚未支持 `Xray 1.8.0`, 待官方更新后支持 Reality
 
-## Preview
-![](https://github.com/LordPenguin666/XTool/blob/main/img/menu.png?raw=true)
-![](https://github.com/LordPenguin666/XTool/blob/main/img/basic.png?raw=true)
-![](https://github.com/LordPenguin666/XTool/blob/main/img/addr.png?raw=true)
 
 ## Functions
 
@@ -20,7 +16,7 @@
 
 ### 已测试系统
 - Debian 11
-- Rocky Linux 9 
+- Rocky Linux 9
 
 ### 下载运行
 
@@ -39,3 +35,8 @@ wget https://github.com/LordPenguin666/XTool/releases/download/latest/xtool-arm
 chmod +x xtool-arm
 ./xtool-arm
 ```
+
+## Preview
+![](https://github.com/LordPenguin666/XTool/blob/main/img/menu.png?raw=true)
+![](https://github.com/LordPenguin666/XTool/blob/main/img/basic.png?raw=true)
+![](https://github.com/LordPenguin666/XTool/blob/main/img/addr.png?raw=true)
