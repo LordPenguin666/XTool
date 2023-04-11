@@ -7,7 +7,9 @@
 - 由于官方安装脚本尚未支持 `Xray 1.8.0`, 待官方更新后支持 Reality
 
 ## Preview
-![](https://github.com/LordPenguin666/XTool/blob/main/img/img.png?raw=true)
+![](https://github.com/LordPenguin666/XTool/blob/main/img/menu.png?raw=true)
+![](https://github.com/LordPenguin666/XTool/blob/main/img/basic.png?raw=true)
+![](https://github.com/LordPenguin666/XTool/blob/main/img/addr.png?raw=true)
 
 ## Functions
 
