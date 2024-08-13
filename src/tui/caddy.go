@@ -2,7 +2,6 @@ package tui
 
 import (
 	"fmt"
-	"github.com/imroc/req/v3"
 	"github.com/rivo/tview"
 	"net/url"
 	"os"
@@ -115,7 +114,7 @@ func (ui *UI) caddyBinaryDownload(next string, update bool) *tview.Grid {
 
 		u.Add("os", "linux")
 		//u.Add("p", "github.com/mholt/caddy-l4")
-		u.Add("p", "github.com/mastercactapus/caddy2-proxyprotocol")
+		//u.Add("p", "github.com/mastercactapus/caddy2-proxyprotocol")
 		//u.Add("p", "github.com/caddyserver/jsonc-adapter")
 
 		switch ui.arch {
